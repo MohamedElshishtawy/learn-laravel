@@ -32,4 +32,9 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    protected static function newFactory(): Factory
+    {
+        return AdminFactory::new();
+    }
 }
