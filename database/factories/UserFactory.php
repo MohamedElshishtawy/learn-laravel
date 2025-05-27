@@ -11,10 +11,16 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
-
+    /**
+     * The password that will be used for all users.
+     */
     protected static ?string $password;
 
-
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition(): array
     {
         return [
@@ -26,6 +32,9 @@ class UserFactory extends Factory
         ];
     }
 
+    /**
+     * Indicate that the model's email address should be unverified.
+     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
@@ -33,6 +42,10 @@ class UserFactory extends Factory
         ]);
     }
 
+    /**
+     * Get a new factory instance for the model.
+     * This will use AdminFactory for creating admin users.
+     */
     protected static function newFactory(): Factory
     {
         return AdminFactory::new();
