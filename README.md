@@ -18,7 +18,7 @@ first you should add to the model
 
 You have 3 ways to overwrite
 - newFactory() method
-- use the factories with out models
+- use the factories without models
 - state
 
 #### newFactory() method
@@ -51,6 +51,32 @@ exaple
 AdminFactory::new()->count(3)->create();
 ```
 - don't forget to add protected $model attribute to the AdminFactory class itself
+
+### state
+the state i think it is the best way <br>
+as you add state that can only change some attributes 
+```php
+/* in the UserFactory */
+// state 1
+public function admin(): Factory
+{
+    return $this->state(function (array $attributes) {
+        return [
+            'is_admin' => true,
+        ];
+    });
+}
+// state 2
+public function verified(): Factory
+{
+    return $this->state(fn (array $attributes) => ['verified' => 'suspended']);
+}
+
+/* use it in the seeder */
+User::factory(2)->admin()->verified()->create();
+User::factory(10)->verified()->create();
+```
+
 
 ## What is Discovery?
 Discovery is how Laravel automatically finds classes. For example:

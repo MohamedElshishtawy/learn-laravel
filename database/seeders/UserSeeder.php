@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
     {
         // $users = User::factory(10)->make();
         User::factory(2)->create();
+        User::factory(2)->admin()->create();
         
     }
 }

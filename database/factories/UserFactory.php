@@ -42,12 +42,9 @@ class UserFactory extends Factory
         ]);
     }
 
-    /**
-     * Get a new factory instance for the model.
-     * This will use AdminFactory for creating admin users.
-     */
-    protected static function newFactory(): Factory
+    public function admin(): Factory
     {
-        return AdminFactory::new();
+        return $this->state(fn ($attr) => ['is_admin' => true]);
     }
+
 }
